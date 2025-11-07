@@ -67,15 +67,21 @@ curl -X POST "http://localhost:8000/generate" \
 1. Create a `render.yaml` file:
 
 ```yaml
+# render.yaml - For Render deployment
 services:
   - type: web
-    name: blog-generator
+    name: multi-agent-blog-generator
     env: python
+    region: oregon
+    plan: free
+    pythonVersion: 3.12.3 # ✅ Ensures compatible wheels (avoids Rust build)
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
       - key: OPENAI_API_KEY
         sync: false
+      - key: PORT
+        value: 10000
 ```
 
 2. Push to GitHub and connect to Render
@@ -167,6 +173,28 @@ CMD ["python", "main.py"]
 | `/health`   | GET    | Health check         |
 | `/generate` | POST   | Generate blog post   |
 | `/docs`     | GET    | Interactive API docs |
+
+## 🌐 Frontend Integration
+
+The backend is designed to work seamlessly with the companion frontend:
+👉 [Multi-Agent Blog Generator Frontend](https://github.com/your-username/multi-agent-blog-generator-frontend)
+
+- The frontend automatically switches between local and production API URLs.
+- By default, it expects:
+  - **Local:** `http://localhost:8000/generate`
+  - **Production:** `https://multi-agent-blog-generator.onrender.com/generate`
+
+Make sure CORS is enabled in `FastAPI`:
+
+- python
+  from fastapi.middleware.cors import CORSMiddleware
+
+  app.add_middleware(
+  CORSMiddleware,
+  allow_origins=["*"], # or restrict to your frontend domain
+  allow_methods=["*"],
+  allow_headers=["*"],
+  )
 
 ## 🎯 Features
 
