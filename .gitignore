@@ -1,0 +1,54 @@
+# ------------------------------
+# Python
+# ------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# ------------------------------
+# Virtual environment
+# ------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# ------------------------------
+# Environment variables
+# ------------------------------
+.env
+.env.*
+
+# ------------------------------
+# IDE / Editor settings
+# ------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ------------------------------
+# OS files
+# ------------------------------
+.DS_Store
+Thumbs.db
+
+# ------------------------------
+# Build / distribution
+# ------------------------------
+build/
+dist/
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# ------------------------------
+# Gradio / Cache
+# ------------------------------
+gradio_cached_examples/
+gradio_logs/
