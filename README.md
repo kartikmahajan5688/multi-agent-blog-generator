@@ -177,12 +177,12 @@ CMD ["python", "main.py"]
 ## 🌐 Frontend Integration
 
 The backend is designed to work seamlessly with the companion frontend:
-👉 [Multi-Agent Blog Generator Frontend](https://github.com/your-username/multi-agent-blog-generator-frontend)
+👉 [Multi-Agent Blog Generator Frontend](https://github.com/kartikmahajan5688/ai-blog-generator-frontend)
 
 - The frontend automatically switches between local and production API URLs.
 - By default, it expects:
   - **Local:** `http://localhost:8000/generate`
-  - **Production:** `https://multi-agent-blog-generator.onrender.com/generate`
+  - **Production:** `https://multi-agent-blog-generator-vugo.onrender.com/generate`
 
 Make sure CORS is enabled in `FastAPI`:
 
