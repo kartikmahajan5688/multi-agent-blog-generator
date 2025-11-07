@@ -5,6 +5,7 @@ services:
     env: python
     region: oregon
     plan: free
+    pythonVersion: 3.12.3        # ✅ Ensures compatible wheels (avoids Rust build)
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
@@ -12,68 +13,3 @@ services:
         sync: false
       - key: PORT
         value: 10000
-
-# ---
-# vercel.json - For Vercel deployment
-# {
-#   "version": 2,
-#   "builds": [
-#     {
-#       "src": "main.py",
-#       "use": "@vercel/python"
-#     }
-#   ],
-#   "routes": [
-#     {
-#       "src": "/(.*)",
-#       "dest": "main.py"
-#     }
-#   ],
-#   "env": {
-#     "OPENAI_API_KEY": "@openai-api-key"
-#   }
-# }
-
-# ---
-# Dockerfile - For Hugging Face Spaces or Docker deployment
-# FROM python:3.11-slim
-
-# WORKDIR /app
-
-# # Install dependencies
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
-
-# # Copy application code
-# COPY main.py .
-
-# # Expose port
-# EXPOSE 7860
-
-# # Set environment variable for Hugging Face
-# ENV PORT=7860
-
-# # Run the application
-# CMD ["python", "main.py"]
-
-# ---
-# # .env.example - Template for environment variables
-# OPENAI_API_KEY=your_openai_api_key_here
-# PORT=8000
-
-# ---
-# # .gitignore
-# __pycache__/
-# *.py[cod]
-# *$py.class
-# *.so
-# .Python
-# venv/
-# env/
-# ENV/
-# .venv
-# .env
-# *.log
-# .DS_Store
-# .idea/
-# .vscode/
